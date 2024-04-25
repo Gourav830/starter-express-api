@@ -23,11 +23,26 @@ const userRoutes = require("./routes/user");
 const campgroundRoutes = require("./routes/campgorunds");
 const reviewsRoutes = require("./routes/review");
 
-async function main() {
-  await mongoose.connect(dbUrl);
-  console.log("CONNECTION OPEN to mongoose");
-}
-main().catch((err) => console.log("Error occuredd"));
+// async function main() {
+//   await mongoose.connect(dbUrl);
+//   console.log("CONNECTION OPEN to mongoose");
+// }
+// main().catch((err) => console.log("Error occuredd"));
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(dbUrl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            // Other options...
+        });
+        console.log('MongoDB connected');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        // Handle error
+    }
+};
+
 
 app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: true }));
