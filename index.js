@@ -30,18 +30,30 @@ const reviewsRoutes = require("./routes/review");
 // main().catch((err) => console.log("Error occuredd"));
 
 
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+// mongoose.connect(dbUrl, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+// });
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(dbUrl);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+
+
 
 
 app.use(mongoSanitize());
