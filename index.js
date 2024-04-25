@@ -16,8 +16,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo");
-// const dbUrl = process.env.DB_URL;
-const dbUrl = 'mongodb+srv://singlaji01:singalji201@yelpcamp.srbsfyy.mongodb.net';
+const dbUrl = process.env.DB_URL;
 // const dbUrl ='mongodb://127.0.0.1:27017/yelpCamp123';
 
 const userRoutes = require("./routes/user");
@@ -45,7 +44,7 @@ const reviewsRoutes = require("./routes/review");
 // });
 
 async function main() {
-  const client = new MongoClient(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(dbUrl);
   await client.connect();
   console.log("Connected to MongoDB");
 
