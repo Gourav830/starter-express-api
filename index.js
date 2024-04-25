@@ -23,11 +23,11 @@ const userRoutes = require("./routes/user");
 const campgroundRoutes = require("./routes/campgorunds");
 const reviewsRoutes = require("./routes/review");
 
-async function main() {
-  await mongoose.connect(dbUrl);
-  console.log("CONNECTION OPEN to mongoose");
-}
-main().catch((err) => console.log("Error occuredd"));
+// async function main() {
+//   await mongoose.connect(dbUrl);
+//   console.log("CONNECTION OPEN to mongoose");
+// }
+// main().catch((err) => console.log("Error occuredd"));
 
 
 // mongoose.connect(dbUrl, {
@@ -42,6 +42,16 @@ main().catch((err) => console.log("Error occuredd"));
 // db.once("open", () => {
 //     console.log("Database connected");
 // });
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(dbUrl);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
 
 
 app.use(mongoSanitize());
