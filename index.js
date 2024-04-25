@@ -43,7 +43,7 @@ const reviewsRoutes = require("./routes/review");
 //     console.log("Database connected");
 // });
 
-async function main() {
+const mongoo = async function main() {
   const client = new MongoClient(dbUrl);
   await client.connect();
   console.log("Connected to MongoDB");
@@ -122,7 +122,7 @@ app.use((err, req, res, next) => {
   if (!err.message) err.message = "oh! No something went wrong!!";
   res.status(statusCode).render("error", { err });
 });
-
+mongoo().then(()=>{
 app.listen("3000", (req, res) => {
   console.log("Listning On 3000 !#@#");
-});
+}}));
