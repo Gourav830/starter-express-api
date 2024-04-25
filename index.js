@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
 const ejsMate = require("ejs-mate");
 const Campground = require("./models/capmgroung");
 const methodOverride = require("method-override");
@@ -43,15 +44,16 @@ const reviewsRoutes = require("./routes/review");
 //     console.log("Database connected");
 // });
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(dbUrl);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+async function main() {
+  const client = new MongoClient(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+  await client.connect();
+  console.log("Connected to MongoDB");
+
+  // Pass the client to the route handlers or use it globally as needed
+  app.locals.dbClient = client;
 }
+main().catch((err) => console.error("Error connecting to MongoDB:", err));
+
 
 
 app.use(mongoSanitize());
