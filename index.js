@@ -23,25 +23,25 @@ const userRoutes = require("./routes/user");
 const campgroundRoutes = require("./routes/campgorunds");
 const reviewsRoutes = require("./routes/review");
 
-// async function main() {
-//   await mongoose.connect(dbUrl);
-//   console.log("CONNECTION OPEN to mongoose");
-// }
-// main().catch((err) => console.log("Error occuredd"));
+async function main() {
+  await mongoose.connect(dbUrl);
+  console.log("CONNECTION OPEN to mongoose");
+}
+main().catch((err) => console.log("Error occuredd"));
 
 
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+// mongoose.connect(dbUrl, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false
+// });
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database connected");
+// });
 
 
 app.use(mongoSanitize());
@@ -116,5 +116,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen("3000", (req, res) => {
-  console.log("Listning On 1323 !#@#");
+  console.log("Listning On 3000 !#@#");
 });
