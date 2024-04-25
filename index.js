@@ -29,19 +29,19 @@ const reviewsRoutes = require("./routes/review");
 // }
 // main().catch((err) => console.log("Error occuredd"));
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect(dbUrl, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            // Other options...
-        });
-        console.log('MongoDB connected');
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-        // Handle error
-    }
-};
+
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
 
 
 app.use(mongoSanitize());
