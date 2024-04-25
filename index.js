@@ -54,9 +54,6 @@ async function main() {
 }
 main().catch((err) => console.error("Error connecting to MongoDB:", err));
 
-
-
-app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
