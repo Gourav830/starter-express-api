@@ -30,28 +30,28 @@ const reviewsRoutes = require("./routes/review");
 // main().catch((err) => console.log("Error occuredd"));
 
 
-// mongoose.connect(dbUrl, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-// });
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
 
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error:"));
-// db.once("open", () => {
-//     console.log("Database connected");
-// });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
 
-const mongoo = async function main() {
-  const client = new MongoClient(dbUrl);
-  await client.connect();
-  console.log("Connected to MongoDB");
+// const mongoo = async function main() {
+//   const client = new MongoClient(dbUrl);
+//   await client.connect();
+//   console.log("Connected to MongoDB");
 
-  // Pass the client to the route handlers or use it globally as needed
-  app.locals.dbClient = client;
-}
-main().catch((err) => console.error("Error connecting to MongoDB:", err));
+//   // Pass the client to the route handlers or use it globally as needed
+//   app.locals.dbClient = client;
+// }
+// main().catch((err) => console.error("Error connecting to MongoDB:", err));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
