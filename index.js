@@ -5,7 +5,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
-const { MongoClient } = require("mongodb");
 const ejsMate = require("ejs-mate");
 const Campground = require("./models/capmgroung");
 const methodOverride = require("method-override");
@@ -16,43 +15,21 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo");
-const dbUrl = process.env.DB_URL;
+// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb+srv://singlaji01:singalji201@yelpcamp.srbsfyy.mongodb.net'
 // const dbUrl ='mongodb://127.0.0.1:27017/yelpCamp123';
 
 const userRoutes = require("./routes/user");
 const campgroundRoutes = require("./routes/campgorunds");
 const reviewsRoutes = require("./routes/review");
 
-// async function main() {
-//   await mongoose.connect(dbUrl);
-//   console.log("CONNECTION OPEN to mongoose");
-// }
-// main().catch((err) => console.log("Error occuredd"));
+async function main() {
+  await mongoose.connect(dbUrl);
+  console.log("CONNECTION OPEN to mongoose");
+}
+main().catch((err) => console.log("Error occuredd"));
 
-
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
-
-// const mongoo = async function main() {
-//   const client = new MongoClient(dbUrl);
-//   await client.connect();
-//   console.log("Connected to MongoDB");
-
-//   // Pass the client to the route handlers or use it globally as needed
-//   app.locals.dbClient = client;
-// }
-// main().catch((err) => console.error("Error connecting to MongoDB:", err));
-
+app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -123,7 +100,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { err });
 });
 
-app.listen("3000", (req, res) => {
+app.listen("1323", (req, res) => {
   console.log("Listning On 1323 !#@#");
 });
-
