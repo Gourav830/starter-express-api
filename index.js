@@ -122,7 +122,7 @@ app.use((err, req, res, next) => {
   if (!err.message) err.message = "oh! No something went wrong!!";
   res.status(statusCode).render("error", { err });
 });
-mongoo().then(()=>{
+
 app.listen("3000", (req, res) => {
   console.log("Listning On 3000 !#@#");
-}}));
+});
