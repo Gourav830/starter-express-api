@@ -16,7 +16,7 @@ const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const MongoStore = require("connect-mongo");
 // const dbUrl = process.env.DB_URL;
-const dbUrl = 'mongodb+srv://singlaji01:singalji201@yelpcamp.srbsfyy.mongodb.net'
+const dbUrl = 'mongodb+srv://singlaji01:singalji201@yelpcamp.srbsfyy.mongodb.net/yelpcamp12'
 // const dbUrl ='mongodb://127.0.0.1:27017/yelpCamp123';
 
 const userRoutes = require("./routes/user");
