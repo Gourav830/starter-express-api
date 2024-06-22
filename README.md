@@ -7,7 +7,7 @@ Here's a README file for your project, including a section for the deployment li
 
 ## Description
 
-WebDevExp is a web development project built using Node.js, Express, and MongoDB. The project includes user authentication, session management, and file uploading features.
+YelpCamp is a web development project built using Node.js, Express, and MongoDB. The project includes user authentication, session management, and file uploading features.
 
 ## Table of Contents
 
